@@ -1,0 +1,64 @@
+{
+  "name": "ui-x",
+  "version": "0.0.1",
+  "description": "Experimental UI framework for modern JavaScript - types, web components, declarative API.",
+  "license": "MIT",
+  "homepage": "https://github.com/jakzo/ui-x",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jakzo/ui-x.git"
+  },
+  "scripts": {
+    "dev": "yarn build:watch",
+    "start": "yarn dev",
+    "build": "tsc -b",
+    "build:watch": "yarn build -w",
+    "format": "prettier -c '**/*.{ts,tsx,js,jsx,json,md}'",
+    "format:fix": "yarn format --write",
+    "lint": "eslint --ext ts,tsx,js,jsx ./",
+    "lint:fix": "yarn lint --fix",
+    "test": "run-s lint format typecheck test:unit",
+    "test:unit": "jest --runInBand",
+    "test:unit:watch": "yarn test:unit --watch",
+    "test:dtslint": "dtslint ./type-tests",
+    "lint-staged": "lint-staged"
+  },
+  "engines": {
+    "node": "12",
+    "yarn": "1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "**/*.ts": [
+      "prettier -l"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^8.3.4",
+    "@types/jest": "^24.0.25",
+    "@types/node": "^13.1.6",
+    "@typescript-eslint/eslint-plugin": "^2.15.0",
+    "@typescript-eslint/parser": "^2.15.0",
+    "depcheck": "^0.9.1",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.0.6",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1",
+    "ts-expect": "^1.1.0",
+    "typescript": "^3.7.4"
+  }
+}
